@@ -241,9 +241,9 @@ export default function Portfolio() {
               ].map((item, i) => (
                 <motion.div key={i} variants={fadeUp} className="group flex items-start gap-4 p-4 bg-[#112240] rounded-xl border border-slate-800 hover:border-cyan-500/50 transition-all h-full min-h-[80px]">
                   <div className="text-cyan-400">{item.icon}</div>
-                  <div>
-                    <p className="font-medium text-white truncate">{item.label}</p>
-                    <p className="text-xs text-slate-400 mt-1 leading-relaxed max-h-20 opacity-100 md:max-h-0 md:opacity-0 md:-translate-y-1 md:overflow-hidden md:group-hover:max-h-20 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:transition-all md:duration-300">
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-white leading-snug break-words">{item.label}</p>
+                    <p className="text-xs text-slate-400 mt-1 leading-relaxed max-h-none opacity-100 md:max-h-0 md:opacity-0 md:-translate-y-1 md:overflow-hidden md:group-hover:max-h-20 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:transition-all md:duration-300">
                       {item.description}
                     </p>
                     {item.link ? (
@@ -251,7 +251,7 @@ export default function Portfolio() {
                         href={item.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-xs text-cyan-400 mt-2 opacity-100 md:max-h-0 md:opacity-0 md:-translate-y-1 md:overflow-hidden md:group-hover:max-h-8 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:transition-all md:duration-300"
+                        className="inline-flex items-center gap-2 text-xs text-cyan-400 mt-2 break-all opacity-100 md:max-h-0 md:opacity-0 md:-translate-y-1 md:overflow-hidden md:group-hover:max-h-8 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:transition-all md:duration-300"
                       >
                         {item.linkLabel ?? "Profile"}
                         <ExternalLink size={14} />
@@ -289,16 +289,16 @@ export default function Portfolio() {
                   target="_blank"
                   rel="noopener noreferrer"
                   variants={fadeUp}
-                  className="p-4 bg-[#112240] border border-slate-800 rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 group hover:border-cyan-500/50 transition-all"
+                  className="w-full p-4 bg-[#112240] border border-slate-800 rounded-xl flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-3 group hover:border-cyan-500/50 transition-all"
                 >
                   <div className="flex items-start gap-3 min-w-0">
                     <Award size={20} className="text-cyan-400 mt-0.5 shrink-0"/>
                     <div className="min-w-0">
-                      <p className="text-slate-200 group-hover:text-cyan-400 transition-colors truncate sm:whitespace-normal">{cert.title}</p>
+                      <p className="text-slate-200 group-hover:text-cyan-400 transition-colors leading-snug break-words">{cert.title}</p>
                       <p className="text-xs text-slate-400 mt-1">{cert.provider}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wide">
+                  <div className="self-start sm:self-auto flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wide shrink-0">
                     <span>View</span>
                     <ExternalLink size={16} />
                   </div>
