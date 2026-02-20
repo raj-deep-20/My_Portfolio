@@ -183,18 +183,29 @@ export default function Portfolio() {
             <h2 className="text-2xl font-bold text-white mb-8">Extra Curriculars</h2>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "Coding", description: "Solved 200+ Leetcode Problems. Also active on platforms like GeeksForGeeks and CodeChef. Also ", icon: <CodeIcon/> },
+                { label: "Coding", description: "Solved 200+ Leetcode Problems. Also active on platforms like GeeksForGeeks and CodeChefs.", linkLabel: "LeetCode Profile", link: "https://leetcode.com/u/Raj_54321/", icon: <CodeIcon/> },
                 { label: "Content Writing", description: "Former Literary Club Joint Head specializing in bridging the gap between technical clarity and creative flair.", icon: <Pen/> },
                 { label: "Photography", description: "Turning everyday scenes into lasting memories. Dedicated to street, portraiture, and mobile photography.", icon: <Camera/> },
                 { label: "Gaming and Sports", description: "Part-Time Efootball Gamer. Football and Cricket Addict - Always keeping up with the latest match analysis, transfers and sporting drama.", icon: <BalloonIcon/> }
               ].map((item, i) => (
-                <div key={i} className="group flex items-start gap-4 p-4 bg-[#112240] rounded-xl border border-slate-800 hover:border-cyan-500/50 transition-all">
+                <div key={i} className="group flex items-start gap-4 p-4 bg-[#112240] rounded-xl border border-slate-800 hover:border-cyan-500/50 transition-all h-full min-h-[80px]">
                   <div className="text-cyan-400">{item.icon}</div>
                   <div>
-                    <p className="font-medium text-white">{item.label}</p>
-                    <p className="text-xs text-slate-400 mt-1 leading-relaxed md:max-h-0 md:opacity-0 md:-translate-y-1 md:overflow-hidden md:group-hover:max-h-20 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:transition-all md:duration-300">
+                    <p className="font-medium text-white truncate">{item.label}</p>
+                    <p className="text-xs text-slate-400 mt-1 leading-relaxed max-h-9 overflow-hidden md:max-h-0 md:opacity-0 md:-translate-y-1 md:overflow-hidden md:group-hover:max-h-20 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:transition-all md:duration-300">
                       {item.description}
                     </p>
+                    {item.link ? (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-xs text-cyan-400 mt-2 md:max-h-0 md:opacity-0 md:-translate-y-1 md:overflow-hidden md:group-hover:max-h-8 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:transition-all md:duration-300"
+                      >
+                        {item.linkLabel ?? "Profile"}
+                        <ExternalLink size={14} />
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               ))}
