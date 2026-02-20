@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rajdeep Portfolio
+
+A modern, single-page portfolio built with Next.js (App Router), Tailwind CSS, Framer Motion, and Lucide icons. The site highlights academics, projects, extra-curriculars, certifications, and contact links in a clean, animated layout.
+
+## Features
+
+- Responsive, single-page layout with section anchors
+- Animated hero text and subtle motion transitions
+- Tech stack cards, academic records, and project highlights
+- Extra-curriculars with hover-reveal descriptions
+- Certifications with direct links to certificates
+- Clean, minimalist dark theme
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19
+- Tailwind CSS 4
+- Framer Motion
+- Lucide React icons
+
+## Sections
+
+- About / Hero
+- Tech Stack
+- Academic Record
+- Projects
+- Extra Curriculars
+- Certifications
+- Contact
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ (recommended)
+- npm (or yarn/pnpm/bun)
+
+### Install & Run
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` - Start dev server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+public/
+	profile.jpeg
+	marksheets/
+	projects/
+src/
+	app/
+		globals.css
+		layout.tsx
+		page.tsx
+```
 
-## Deploy on Vercel
+## Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Update hero text, cards, and sections in `src/app/page.tsx`.
+- Replace images in `public/` and update their paths in the page data.
+- Add or remove projects and certifications by editing their data arrays.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+The app can be deployed to Vercel or any platform that supports Next.js.
+
+## License
+
+All rights reserved.

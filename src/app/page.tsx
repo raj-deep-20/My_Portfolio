@@ -6,7 +6,10 @@ import {
   BookOpen, Code2, Award, Send, FileText, Cpu, 
   Globe, Database, Camera, Trophy, Users, Heart,
   ToolCase,
-  Toolbox
+  Toolbox,
+  CodeIcon,
+  Pen,
+  BalloonIcon
 } from 'lucide-react';
 
 // --- Navbar Component ---
@@ -45,15 +48,27 @@ const Navbar = () => {
 // --- Typewriter Component ---
 const Typewriter = ({ texts }: { texts: string[] }) => {
   const [index, setIndex] = useState(0);
+
   useEffect(() => {
     const timer = setInterval(() => setIndex((prev) => (prev + 1) % texts.length), 3000);
     return () => clearInterval(timer);
   }, [texts]);
 
   return (
-    <motion.span key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-cyan-400">
-      {texts[index]}
-    </motion.span>
+    <div className="relative h-full overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={index}
+          initial={{ y: 14, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -14, opacity: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="absolute inset-0 text-cyan-400"
+        >
+          {texts[index]}
+        </motion.span>
+      </AnimatePresence>
+    </div>
   );
 };
 
@@ -68,7 +83,7 @@ export default function Portfolio() {
           <motion.h1 initial={{ opacity: 5 }} animate={{ opacity: 1 }} className="text-5xl md:text-7xl font-bold text-white mb-4">
             Rajdeep Podder
           </motion.h1>
-          <div className="text-2xl md:text-4xl font-mono mb-6 h-12">
+          <div className="hidden text-2xl md:text-4xl font-mono mb-6 h-12">
             <Typewriter texts={["AIML Undergrad", "Gen AI Enthusiast", "Competitive Programmer"]} />
           </div>
           <p className="text-slate-400 text-lg mb-8 max-w-xl leading-relaxed">
@@ -168,14 +183,19 @@ export default function Portfolio() {
             <h2 className="text-2xl font-bold text-white mb-8">Extra Curriculars</h2>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "Photography", icon: <Camera/> },
-                { label: "Hackathons", icon: <Trophy/> },
-                { label: "Community", icon: <Users/> },
-                { label: "Open Source", icon: <Heart/> }
+                { label: "Coding", description: "Solved 200+ Leetcode Problems. Also active on platforms like GeeksForGeeks and CodeChef. Also ", icon: <CodeIcon/> },
+                { label: "Content Writing", description: "Former Literary Club Joint Head specializing in bridging the gap between technical clarity and creative flair.", icon: <Pen/> },
+                { label: "Photography", description: "Turning everyday scenes into lasting memories. Dedicated to street, portraiture, and mobile photography.", icon: <Camera/> },
+                { label: "Gaming and Sports", description: "Part-Time Efootball Gamer. Football and Cricket Addict - Always keeping up with the latest match analysis, transfers and sporting drama.", icon: <BalloonIcon/> }
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 bg-[#112240] rounded-xl border border-slate-800">
+                <div key={i} className="group flex items-start gap-4 p-4 bg-[#112240] rounded-xl border border-slate-800 hover:border-cyan-500/50 transition-all">
                   <div className="text-cyan-400">{item.icon}</div>
-                  <span className="font-medium">{item.label}</span>
+                  <div>
+                    <p className="font-medium text-white">{item.label}</p>
+                    <p className="text-xs text-slate-400 mt-1 leading-relaxed md:max-h-0 md:opacity-0 md:-translate-y-1 md:overflow-hidden md:group-hover:max-h-20 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:transition-all md:duration-300">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -183,11 +203,37 @@ export default function Portfolio() {
           <div>
             <h2 className="text-2xl font-bold text-white mb-8">Certifications</h2>
             <div className="space-y-4">
-              {["Machine Learning Specialization", "Web Development Bootcamp", "Cloud Computing Basics"].map((cert, i) => (
-                <div key={i} className="p-4 bg-[#112240] border border-slate-800 rounded-xl flex justify-between items-center group">
-                  <span className="text-slate-300 group-hover:text-cyan-400 transition-colors">{cert}</span>
-                  <Award size={20} className="text-cyan-400"/>
-                </div>
+              {[
+                {
+                  title: "Deloitte Data Analytics Job Simulation",
+                  provider: "Forage",
+                  link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_vjAEbjSKmHpxjHJzB_1751876799283_completion_certificate.pdf",
+                },
+                {
+                  title: "AWS Solutions Architecture Job Simulation",
+                  provider: "Forage",
+                  link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/pmnMSL4QiQ9JCgE3W/kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_vjAEbjSKmHpxjHJzB_1752124552966_completion_certificate.pdf",
+                },
+              ].map((cert, i) => (
+                <a
+                  key={i}
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 bg-[#112240] border border-slate-800 rounded-xl flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 group hover:border-cyan-500/50 transition-all"
+                >
+                  <div className="flex items-start gap-3 min-w-0">
+                    <Award size={20} className="text-cyan-400 mt-0.5 shrink-0"/>
+                    <div className="min-w-0">
+                      <p className="text-slate-200 group-hover:text-cyan-400 transition-colors truncate sm:whitespace-normal">{cert.title}</p>
+                      <p className="text-xs text-slate-400 mt-1">{cert.provider}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wide">
+                    <span>View</span>
+                    <ExternalLink size={16} />
+                  </div>
+                </a>
               ))}
             </div>
           </div>
@@ -198,14 +244,14 @@ export default function Portfolio() {
       <footer id="contact" className="py-20 border-t border-slate-800 bg-[#0B0E14] text-center">
         <div className="container mx-auto px-6">
           <h2 className="text-4xl font-bold text-white mb-4">Let's Connect</h2>
-          <p className="text-slate-400 mb-10">Available for Summer 2026 Internships</p>
+          <p className="text-slate-400 mb-10">Access me through my socials</p>
           <div className="flex justify-center gap-8 mb-12">
             <a href="https://github.com/raj-deep-20" className="text-slate-500 hover:text-cyan-400 hover:scale-110 transition-all"><Github size={32}/></a>
             <a href="https://linkedin.com/in/rajdeep-podder-4bb579210" className="text-slate-500 hover:text-cyan-400 hover:scale-110 transition-all"><Linkedin size={32}/></a>
             <a href="mailto:iamrajdeep2005@gmail.com" className="text-slate-500 hover:text-cyan-400 hover:scale-110 transition-all"><Mail size={32}/></a>
           </div>
           <p className="text-xs font-mono text-slate-600 uppercase tracking-widest">
-            Built with Next.js & Framer Motion by Rajdeep Podder
+             © All rights reserved. Built with ❤️ by Rajdeep Podder.
           </p>
         </div>
       </footer>
