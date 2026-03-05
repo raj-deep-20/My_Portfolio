@@ -117,9 +117,14 @@ export default function Portfolio() {
             Consistently exploring intelligent systems, machine learning algorithms and data-driven solutions.
           </p>
           <div className="flex gap-4">
-            <button className="bg-cyan-500 hover:bg-cyan-600 text-black font-bold py-3 px-8 rounded-full transition-transform hover:scale-105 flex items-center gap-2">
+            <a
+              href="/marksheets/My_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-cyan-500 hover:bg-cyan-600 text-black font-bold py-3 px-8 rounded-full transition-transform hover:scale-105 flex items-center gap-2"
+            >
               <FileText size={18}/> My Resume
-            </button>
+            </a>
           </div>
         </div>
         
@@ -146,11 +151,11 @@ export default function Portfolio() {
             viewport={{ once: true, amount: 0.2 }}
           >
             {[
-              { title: "Languages", tools: "C/C++, Python, Java", icon: <Code2/> },
-              { title: "AI/ML", tools: "Tensorflow, Scikit-learn, Numpy, Pandas, Matplotlib", icon: <Cpu/> },
-              { title: "Web Dev", tools: "Next JS, Tailwind CSS, FastAPI, Django", icon: <Globe/> },
+              { title: "Languages", tools: "C/C++, Python, Java, Bash(Shell Scripting)", icon: <Code2/> },
+              { title: "AI/ML", tools: "Pytorch, Scikit-learn, Numpy, Pandas, Matplotlib, Langchain", icon: <Cpu/> },
+              { title: "Web Dev", tools: "Next JS, Tailwind CSS, Shadcn UI, FastAPI, Django", icon: <Globe/> },
               { title: "Databases", tools: "MySQL, Postgresql", icon: <Database/> },
-              { title: "Miscellaneous", tools: "Git/Github, Jupyter Notebook, VScode, Docker", icon: <Toolbox/> }
+              { title: "Tools", tools: "Git/Github, Jupyter Notebook, VScode, Docker, Weka, Prolog", icon: <Toolbox/> },
 
             ].map((stack, i) => (
               <motion.div key={i} variants={fadeUp} className="p-8 bg-[#112240] rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition-all">
@@ -174,7 +179,7 @@ export default function Portfolio() {
           viewport={{ once: true, amount: 0.2 }}
         >
           {[
-            { year: "2023-2027", title: "B.Tech AIML", info: "YGPA: 8.49", desc: "Techno Main Salt Lake", marksheet: "/" },
+            { year: "2023-2027", title: "B.Tech AIML", info: "GPA: 8.49", desc: "Techno Main Salt Lake", marksheet: "/" },
             { year: "2023", title: "Class XII (CBSE)", info: "90.8%", desc: "Aditya Academy Sr. Secondary", marksheet: "/marksheets/class%20XII.pdf" },
             { year: "2021", title: "Class X (CBSE)", info: "94.8%", desc: "Aditya Academy Sr. Secondary", marksheet: "/marksheets/class%20X.pdf" }
           ].map((edu, i) => (
@@ -281,6 +286,11 @@ export default function Portfolio() {
                   title: "AWS Solutions Architecture Job Simulation",
                   provider: "Forage",
                   link: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/pmnMSL4QiQ9JCgE3W/kkE9HyeNcw6rwCRGw_pmnMSL4QiQ9JCgE3W_vjAEbjSKmHpxjHJzB_1752124552966_completion_certificate.pdf",
+                },
+                 {
+                  title: "Generative AI fundamentals",
+                  provider: "Databricks",
+                  link: "https://credentials.databricks.com/41f23821-f711-4f93-9b2a-99183793e855#acc.bPHl6pnx",
                 },
               ].map((cert, i) => (
                 <motion.a
